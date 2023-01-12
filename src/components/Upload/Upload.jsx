@@ -1,25 +1,16 @@
 import React, { useState } from "react";
-import Alert from "./Alert";
+import "./upload.css";
 
-export default function Upload() {
+export default function Upload({ setUrl }) {
   const [fileInputState, setFileInputState] = useState("");
-  const [previewSource, setPreviewSource] = useState("");
   const [selectedFile, setSelectedFile] = useState();
   const [successMsg, setSuccessMsg] = useState("");
   const [errMsg, setErrMsg] = useState("");
+
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
-    previewFile(file);
     setSelectedFile(file);
     setFileInputState(e.target.value);
-  };
-
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-    };
   };
 
   const handleSubmitFile = (e) => {
@@ -38,25 +29,28 @@ export default function Upload() {
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-      await fetch("http://172.20.10.11:3000/upload", {
+      await fetch("https://evemark.samikammoun.me/api/upload", {
         method: "POST",
         body: JSON.stringify({ data: base64EncodedImage }),
         headers: { "Content-Type": "application/json" },
-      });
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data.url);
+          setUrl(data.url);
+        });
       setFileInputState("");
-      setPreviewSource("");
+      setErrMsg("");
       setSuccessMsg("Image uploaded successfully");
     } catch (err) {
       console.error(err);
+      setSuccessMsg("");
       setErrMsg("Something went wrong!");
     }
   };
   return (
-    <div>
-      <h1 className="title">Upload an Image</h1>
-      <Alert msg={errMsg} type="danger" />
-      <Alert msg={successMsg} type="success" />
-      <form onSubmit={handleSubmitFile} className="form">
+    <div className="upload">
+      <label className="file-upload">
         <input
           id="fileInput"
           type="file"
@@ -65,11 +59,14 @@ export default function Upload() {
           value={fileInputState}
           className="form-input"
         />
-        <button className="btn" type="submit">
-          Submit
-        </button>
-      </form>
-      {previewSource && <img src={previewSource} alt="chosen" style={{ height: "300px" }} />}
+      </label>
+      <button className="btn" type="submit" onClick={handleSubmitFile}>
+        Upload
+      </button>
+      <h5>
+        {successMsg}
+        {errMsg}
+      </h5>
     </div>
   );
 }
