@@ -1,6 +1,7 @@
 import React from "react";
 import "./login.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [submissionResults, setsubmissionResults] = useState("Login to continue");
@@ -8,6 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -18,21 +20,24 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(`https://evemark.samikammoun.me/api/user/login`, {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      console.log(data);
+    const response = await fetch(`https://evemark.samikammoun.me/api/user/login`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
       setsubmissionResults("Login Successful");
-    } catch (err) {
-      console.error(err);
+      navigate("/events");
+    }
+    if (response.status === 401) {
+      setsubmissionResults("Login Failed");
     }
   };
+
+  const onLogin = () => {};
   return (
     <div className="container row">
       <div className="logo__container">

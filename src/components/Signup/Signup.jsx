@@ -1,6 +1,7 @@
 import React from "react";
 import "../Signup/signup.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [submissionResults, setsubmissionResults] = useState("Sign up to continue");
@@ -10,6 +11,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -30,6 +33,7 @@ const Signup = () => {
       });
       const data = await response.json();
       setsubmissionResults(data.msg);
+      navigate("/");
     } catch (err) {
       console.error(err);
     }

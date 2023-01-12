@@ -5,6 +5,7 @@ import Signup from "./components/Signup/Signup";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Upload from "./components/Upload/Upload";
 import Create from "./components/Events/Create/Create";
+import Event from "./components/Events/Event/Event";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route exact path="/events" element={<Events />}></Route>
         <Route exact path="/upload" element={<Upload />}></Route>
         <Route exact path="/create" element={<Create />}></Route>
+        <Route exact path="/event/:id" element={<Event />}></Route>
       </Routes>
     </Router>
   );

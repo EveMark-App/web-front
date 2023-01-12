@@ -1,6 +1,7 @@
 import React from "react";
 import "./events.css";
 import { BsPlusLg } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Events = () => {
   const events = [
@@ -65,9 +66,11 @@ const Events = () => {
         ))}
         <div className="event__card">
           <div className="event__banner empty__banner"></div>
-          <div className="plus">
-            <BsPlusLg></BsPlusLg>
-          </div>
+          <Link to="/create">
+            <div className="plus">
+              <BsPlusLg></BsPlusLg>
+            </div>
+          </Link>
         </div>
       </div>
     </section>
