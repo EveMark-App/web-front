@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Upload from "../../Upload/Upload";
 import "./create.css";
 
 const Create = () => {
@@ -18,6 +19,31 @@ const Create = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    console.log(formData);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await fetch("https://evemark.samikammoun.me/api/event/create", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const setUrl = (url) => {
+    setFormData({
+      ...formData,
+      bannerURL: url,
+    });
   };
 
   return (
@@ -27,7 +53,7 @@ const Create = () => {
         <div className="create__guide">
           <h3>Your journey to event management starts here!</h3>
         </div>
-        <form className="create__form">
+        <form className="create__form" onSubmit={handleSubmit}>
           <div className="step first__step" style={{ display: step === 1 ? "grid" : "none" }}>
             <input
               onChange={handleChange}
@@ -43,13 +69,14 @@ const Create = () => {
               placeholder="A short description for your event (max 50 words)"
               value={formData.short_description}
             />
-            <input
+            {/* <input
               onChange={handleChange}
               type="text"
               name="bannerURL"
               placeholder="A link to your event's banner"
               value={formData.bannerURL}
-            />
+            /> */}
+            <Upload setUrl={(url) => setUrl(url)}></Upload>
           </div>
           <div className="step second__step" style={{ display: step === 2 ? "grid" : "none" }}>
             <input
@@ -111,7 +138,7 @@ const Create = () => {
           >
             Next
           </div>
-          <div className="btn btn-primary" type="submit" style={{ display: step === 3 ? "block" : "none" }}>
+          <div className="btn btn-primary" onClick={handleSubmit} style={{ display: step === 3 ? "block" : "none" }}>
             Submit
           </div>
         </div>
