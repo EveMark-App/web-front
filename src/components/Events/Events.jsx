@@ -39,7 +39,7 @@ const Events = () => {
               <div className="two__columns">
                 <div className="event__date">{event.date}</div>
                 <Link key={event._id} to={`/event/${event._id}`}>
-                  <div className="btn goto">Go To</div>
+                  <div className="btn btn-primary goto">Go To</div>
                 </Link>
               </div>
             </div>
