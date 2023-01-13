@@ -82,14 +82,27 @@ const Create = () => {
               placeholder="Event's location"
               value={formData.location}
             />
-            <input
-              onChange={handleChange}
-              type="date"
-              name="date"
-              placeholder="Event's date"
-              value={formData.date}
-              style={{ color: "white" }}
-            />
+            <div className="dates">
+              <input
+                onChange={handleChange}
+                type="date"
+                name="start_date"
+                placeholder="Event's date"
+                value={formData.start_date}
+                style={{}}
+              />
+              <div>→</div>
+
+              <input
+                onChange={handleChange}
+                type="date"
+                name="start_date"
+                placeholder="Event's date"
+                value={formData.start_date}
+                style={{}}
+              />
+            </div>
+
             <input
               onChange={handleChange}
               type="number"
