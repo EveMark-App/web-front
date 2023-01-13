@@ -24,7 +24,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://evemark.fun/api/user/create", {
+      const response = await fetch("/api/user/create", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {

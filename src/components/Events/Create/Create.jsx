@@ -26,18 +26,18 @@ const Create = () => {
 
   const handleSubmit = async () => {
     try {
-      await fetch("https://evemark.fun/api/event/create", {
+      const response = await fetch("/api/event/create", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          navigate(`/event/${data._id}`);
-        });
+      });
+      if (response.status == 200) {
+        const data = await response.json();
+        navigate(`/event/${data._id}`);
+      }
     } catch (err) {
       console.error(err);
     }

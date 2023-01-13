@@ -21,7 +21,7 @@ const Event = () => {
 
   useEffect(() => {
     const fetchEvent = async () => {
-      const response = await fetch(`https://evemark.fun/api/event/get-one/${id}`, {
+      const response = await fetch(`/api/event/get-one/${id}`, {
         method: "GET",
         credentials: "include",
       });
@@ -32,7 +32,7 @@ const Event = () => {
   }, [id]);
 
   const deleteEvent = async () => {
-    const response = await fetch(`https://evemark.fun/api/event/delete/${id}`, {
+    const response = await fetch(`/api/event/delete/${id}`, {
       method: "DELETE",
       credentials: "include",
     });

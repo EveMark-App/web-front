@@ -9,7 +9,7 @@ const Events = () => {
   const [events, setEvents] = useState(null);
   useEffect(() => {
     const getEvents = async () => {
-      const response = await fetch("https://evemark.fun/api/user/get-created-events", {
+      const response = await fetch("/api/user/get-created-events", {
         method: "GET",
         credentials: "include",
       });
