@@ -1,7 +1,7 @@
 import React from "react";
 import "./sendMail.css";
 import { useState } from "react";
-const SendMail = (id) => {
+const SendMail = ({ id }) => {
   const [submissionResults, setsubmissionResults] = useState("");
   const [formData, setFormData] = useState({
     subject: "",
@@ -16,10 +16,10 @@ const SendMail = (id) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`https://evemark.fun/api/event/:${id}/send`, {
+    const response = await fetch(`https://evemark.fun/api/event/mail/${id}`, {
       method: "POST",
       credentials: "include",
-      body: JSON.stringify({ ...formData, id }),
+      body: JSON.stringify({ ...formData }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -30,10 +30,13 @@ const SendMail = (id) => {
     if (response.status === 401) {
       setsubmissionResults("Message Failed");
     }
+    if (response.status === 500) {
+      setsubmissionResults("No participants found!");
+    }
   };
   return (
     <div className="send__mail">
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="subject"
@@ -43,16 +46,15 @@ const SendMail = (id) => {
         />
         <textarea
           name="message"
-          id=""
           cols="30"
           rows="10"
           placeholder="Enter Message"
           onChange={handleChange}
           value={formData.message}
         ></textarea>
-        <div className="btn btn-primary" type="submit">
+        <button className="btn btn-primary" type="submit">
           Send
-        </div>
+        </button>
         <h5>{submissionResults}</h5>
       </form>
     </div>
