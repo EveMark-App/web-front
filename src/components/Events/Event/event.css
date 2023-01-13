@@ -41,6 +41,7 @@
 }
 
 .event__title__category {
+  width: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -56,4 +57,27 @@
 
 .price {
   font-style: oblique;
+}
+
+.event__title__display {
+  padding-right: 1rem;
+}
+
+.return__delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.return__delete * {
+  font-size: 50px;
+}
+
+.return__delete a {
+  height: 0px;
+}
+
+.return__delete > svg {
+  fill: rgb(250, 108, 108);
+  cursor: pointer;
 }
