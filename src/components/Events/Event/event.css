@@ -52,7 +52,8 @@
   border-radius: 1rem;
   background: var(--color-primary);
   width: fit-content;
-  padding: 5px;
+  padding: 5px 10px;
+  color: var(--color-bg-variant);
 }
 
 .price {

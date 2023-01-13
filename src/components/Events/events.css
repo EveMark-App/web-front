@@ -23,6 +23,7 @@
 
 .event__card:hover .event__banner {
   transform: scale(1.5);
+  opacity: 0.2;
 }
 
 .event__details {
@@ -40,6 +41,7 @@
   opacity: 0;
   font-size: 14px;
   margin-bottom: 10px;
+  color: var(--color-bg-variant);
 }
 
 .event__date {
