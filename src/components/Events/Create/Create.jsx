@@ -85,7 +85,7 @@ const Create = () => {
             <div className="dates">
               <input
                 onChange={handleChange}
-                type="time"
+                type="date"
                 name="start_date"
                 placeholder="Event's date"
                 value={formData.start_date}
@@ -95,8 +95,8 @@ const Create = () => {
 
               <input
                 onChange={handleChange}
-                type="time"
-                name="start_date"
+                type="date"
+                name="end_date"
                 placeholder="Event's date"
                 value={formData.end_date}
                 style={{}}
