@@ -96,9 +96,9 @@ const Create = () => {
               <input
                 onChange={handleChange}
                 type="date"
-                name="start_date"
+                name="end_date"
                 placeholder="Event's date"
-                value={formData.start_date}
+                value={formData.end_date}
                 style={{}}
               />
             </div>
