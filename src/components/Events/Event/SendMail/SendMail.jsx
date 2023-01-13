@@ -17,7 +17,7 @@ const SendMail = ({ id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`/api/event/:${id}/send`, {
+    const response = await fetch(`/api/event/mail/${id}`, {
       method: "POST",
       credentials: "include",
       body: JSON.stringify({ ...formData }),
