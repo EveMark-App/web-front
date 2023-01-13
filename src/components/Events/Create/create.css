@@ -44,18 +44,20 @@
 }
 
 .second__step {
-  grid-template-rows: 30% 30% 30%;
+  grid-template-rows: 20% 20% 20% 20%;
 }
 
 .third__step {
 }
 
-.second__step input {
+.second__step input,
+select {
   height: auto !important;
 }
 
 .step input,
-textarea {
+textarea,
+select {
   width: 100%;
   height: 100%;
   background: var(--color-bg);
@@ -69,12 +71,14 @@ textarea {
 }
 
 .step input::placeholder,
-textarea::placeholder {
+textarea::placeholder,
+select::placeholder {
   color: var(--color-light);
 }
 
 .step input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border: 1px solid var(--color-primary);
   background: var(--color-bg-variant);
 }

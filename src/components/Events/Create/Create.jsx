@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Upload from "../../Upload/Upload";
 import "./create.css";
 
 const Create = () => {
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     short_description: "",
@@ -12,6 +14,7 @@ const Create = () => {
     date: "",
     price: "",
     description: "",
+    category: "",
   });
 
   const handleChange = (e) => {
@@ -19,21 +22,21 @@ const Create = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    console.log(formData);
   };
 
   const handleSubmit = async () => {
     try {
-      await fetch("https://evemark.samikammoun.me/api/event/create", {
+      await fetch("https://evemark.fun/api/event/create", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          navigate(`/event/${data._id}`);
         });
     } catch (err) {
       console.error(err);
@@ -64,18 +67,11 @@ const Create = () => {
             />
             <textarea
               onChange={handleChange}
-              maxLength="50"
+              maxLength="200"
               name="short_description"
-              placeholder="A short description for your event (max 50 words)"
+              placeholder="A short description for your event (max 200 characters)"
               value={formData.short_description}
             />
-            {/* <input
-              onChange={handleChange}
-              type="text"
-              name="bannerURL"
-              placeholder="A link to your event's banner"
-              value={formData.bannerURL}
-            /> */}
             <Upload setUrl={(url) => setUrl(url)}></Upload>
           </div>
           <div className="step second__step" style={{ display: step === 2 ? "grid" : "none" }}>
@@ -101,6 +97,13 @@ const Create = () => {
               placeholder="Participation fee in TND"
               value={formData.price}
             />
+            <select onChange={handleChange} name="category" value={formData.category}>
+              <option value="Sport">Sport</option>
+              <option value="Music">Music</option>
+              <option value="Art">Art</option>
+              <option value="Technology">Technology</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div className="step third__step" style={{ display: step === 3 ? "grid" : "none" }}>
             <textarea
