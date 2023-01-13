@@ -26,7 +26,7 @@ const Create = () => {
 
   const handleSubmit = async () => {
     try {
-      await fetch("https://evemark.fun/api/event/create", {
+      await fetch("/api/event/create", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {

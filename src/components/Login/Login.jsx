@@ -20,7 +20,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`https://evemark.fun/api/user/login`, {
+    const response = await fetch(`/api/user/login`, {
       method: "POST",
       credentials: "include",
       body: JSON.stringify(formData),

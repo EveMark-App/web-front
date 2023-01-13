@@ -16,7 +16,7 @@ const SendMail = (id) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`https://evemark.fun/api/event/:${id}/send`, {
+    const response = await fetch(`/api/event/:${id}/send`, {
       method: "POST",
       credentials: "include",
       body: JSON.stringify({ ...formData, id }),
