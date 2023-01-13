@@ -29,7 +29,7 @@ export default function Upload({ setUrl }) {
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-      await fetch("https://evemark.samikammoun.me/api/upload", {
+      await fetch("https://evemark.fun/api/upload", {
         method: "POST",
         body: JSON.stringify({ data: base64EncodedImage }),
         headers: { "Content-Type": "application/json" },
