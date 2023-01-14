@@ -29,7 +29,7 @@ const Event = () => {
       setEventData(data);
     };
     fetchEvent();
-  }, [id]);
+  }, []);
 
   const deleteEvent = async () => {
     const response = await fetch(`/api/event/delete/${id}`, {
@@ -56,9 +56,9 @@ const Event = () => {
           </div>
 
           <h4>
-            {eventData.start_date} → {eventData.end_date}
+            {eventData.start_date.substring(0, 10)} → {eventData.end_date.substring(0, 10)} @ {eventData.location}
           </h4>
-          <h4 className="price">{eventData.price.$numberdecimal} TND</h4>
+          <h4 className="price">{eventData.price.$numberDecimal} TND</h4>
           <br />
           <div className="event__short__description__display">{eventData.short_description}</div>
           <br />
