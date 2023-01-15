@@ -2,6 +2,7 @@ import React from "react";
 import "../Signup/signup.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EveMarkBanner from "../../assets/EveMarkBanner.png";
 
 const Signup = () => {
   const [submissionResults, setsubmissionResults] = useState("Sign up to continue");
@@ -41,7 +42,7 @@ const Signup = () => {
   return (
     <div className="container row">
       <div className="logo__container">
-        <img src="https://cdn-icons-png.flaticon.com/512/49/49342.png" alt="Logo" />
+        <img src={EveMarkBanner} alt="Logo" />
       </div>
       <div className="login__container">
         <form className="login__form" onSubmit={handleSubmit}>

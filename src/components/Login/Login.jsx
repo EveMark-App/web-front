@@ -2,6 +2,7 @@ import React from "react";
 import "./login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EveMarkBanner from "../../assets/EveMarkBanner.png";
 
 const Login = () => {
   const [submissionResults, setsubmissionResults] = useState("Login to continue");
@@ -41,7 +42,7 @@ const Login = () => {
   return (
     <div className="container row">
       <div className="logo__container">
-        <img src="https://cdn-icons-png.flaticon.com/512/49/49342.png" alt="Logo" />
+        <img src={EveMarkBanner} alt="Logo" />
       </div>
       <div className="login__container">
         <form className="login__form" onSubmit={handleSubmit}>
